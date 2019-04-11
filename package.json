@@ -1,0 +1,16 @@
+{
+  "name": "algorithm",
+  "version": "0.0.1",
+  "description": "算法和数据结构",
+  "repository": "git@github.com:DvShu/algorithm.git",
+  "author": "DvShu <1joelshu@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "ava": "^1.4.1",
+    "typescript": "^3.4.1"
+  },
+  "scripts": {
+    "tsc": "tsc",
+    "test": "ava"
+  }
+}
