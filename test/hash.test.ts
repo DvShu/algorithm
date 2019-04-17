@@ -1,6 +1,6 @@
 import test from 'ava';
-import LinkedHash from "../src/hash/LinkedHash";
-import ArrayHash from "../src/hash/ArrayHash";
+import LinkedHash from "../src/data-structure/hash/LinkedHash";
+import ArrayHash from "../src/data-structure/hash/ArrayHash";
 
 test('LinkedHash_add', (t) => {
   let hashTable = new LinkedHash();

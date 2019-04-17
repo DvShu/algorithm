@@ -1,4 +1,5 @@
 import HeapInterface from "./HeapInterface";
+import Comparator from "../lang/Comparator";
 
 /**
  * 堆，最大堆和最小堆都需要实现该类
@@ -10,12 +11,14 @@ import HeapInterface from "./HeapInterface";
  * 2. 同理根据父节点获取其左边字节的的index: 2*i + 1
  * 3. 根据父节点index获取其右边子节点的index: 2*i + 2
  */
-export default abstract class Heap {
+export default abstract class Heap<T> {
 
-  private readonly heapContainer: any;
+  protected heapContainer: T[];
+  protected readonly comparator: Comparator<T>;
 
-  public constructor() {
+  public constructor(compare?: Comparator<T>) {
     this.heapContainer = [];
+    this.comparator = compare || new Comparator();
   }
 
   /**
@@ -57,7 +60,7 @@ export default abstract class Heap {
    * 时间复杂度：O(log n)
    * @param item @{any}  在尾部插入的新的元素
    */
-  insert(item: any) {
+  insert(item: T) {
     this.heapContainer.push(item);
     this.shiftUp(); // 整理堆数据
   }
@@ -102,11 +105,11 @@ export default abstract class Heap {
         swapIndex = leftIndex;
       }
       // 如果父节点的值本身就大(小)于子节点的值，则不用交换
-      if (this.pairIsCorrect(startIndex, swapIndex)) {
+      if (this.pairIsCorrect(this.heapContainer[startIndex], this.heapContainer[swapIndex])) {
         break;
       }
       // 重置父节点的值为最大的子节点的值
-      this.heapContainer[startIndex] = this.heapContainer[swapIndex];
+      this._swap(startIndex, swapIndex);
       startIndex = swapIndex;
     }
   }
@@ -116,7 +119,7 @@ export default abstract class Heap {
       // 获取需要删除的数据项index
       let removeIndex = indexs.pop();
       // 如果删除的是最后一个节点，则直接删除
-      if (removeIndex === this.heapContainer.length) {
+      if (removeIndex === this.heapContainer.length - 1) {
         this.heapContainer.pop();
       } else {
         // 重置删除点的值为最末尾的值，然后进行堆整理
@@ -143,7 +146,7 @@ export default abstract class Heap {
    * 移除所有的指定值的item
    * @param item  指定需要移除的item
    */
-  removeItems (item: any) {
+  removeItems (item: T) {
     // 获取所有的匹配的需要移除的项
     let toRemoveItems = this.heapContainer.filter((v) => v === item);
     this._removeIndexs(toRemoveItems);
@@ -168,7 +171,7 @@ export default abstract class Heap {
    * 通过反复调用 insert() 方法将一个（无序）数组转换成一个堆。
    * @param array 需要转换为堆的数组
    */
-  buildHeap (array) {
+  buildHeap (array: T[]) {
     for (let item of array) {
       this.insert(item);
     }
@@ -181,7 +184,7 @@ export default abstract class Heap {
    * @param value 需要搜索的堆
    * @return @{interger}  堆中的索引
    */
-  search (value: any): number {
+  search (value: T): number {
     return this.heapContainer.indexOf(value);
   }
 
@@ -190,7 +193,7 @@ export default abstract class Heap {
    * 时间复杂度 O(1)
    * @return @{any} 堆中的最大(小)值
    */
-  peek (): any {
+  peek (): T {
     return this.heapContainer[0];
   }
 
@@ -202,6 +205,13 @@ export default abstract class Heap {
     return !this.heapContainer.length;
   }
 
+  /**
+   * 返回剩余堆大小
+   */
+  size (): number {
+    return this.heapContainer.length;
+  }
+
   toString(): string {
     return this.heapContainer.toString();
   }
@@ -211,6 +221,6 @@ export default abstract class Heap {
    * @param parentItem  父节点的属性值
    * @param childItem   子节点的属性值
    */
-  abstract pairIsCorrect(parentItem: any, childItem: any): boolean;
+  abstract pairIsCorrect(parentItem: T, childItem: T): boolean;
 
 }

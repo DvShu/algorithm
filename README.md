@@ -1,7 +1,6 @@
 # algorithm
 算法和数据结构，这个工程只有具体的代码实现以及注释。
-## src/
-### 数据结构
+## 数据结构(src/data-structure)
 * [linked-list](https://codeburst.io/js-data-structures-linked-list-3ed4d63e6571 "linked-list") 链表：
   1. SinglyLinkedList 单向链表
   2. DoublyLinkedList 双向链表
@@ -16,6 +15,9 @@
 * heap [堆](https://www.jianshu.com/p/6b526aa481b1 "堆")：
   1. MaxHeap 最大堆
   2. MinHeap 最小堆
+* priority-queue 优先队列  
+* trie 字典树
+## 算法(src/algorithm)
 ### 排序算法(sort)
 整理的一些常用排序算法的 `js` 实现，对于排序算法的简单介绍，参考[十大经典排序算法](https://www.cnblogs.com/onepixel/articles/7674659.html "十大经典排序算法")  
 目前整理的排序算法有：

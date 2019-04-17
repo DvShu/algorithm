@@ -1,6 +1,6 @@
 import test from 'ava';
-import MaxHeap from "../src/heap/MaxHeap";
-import MinHeap from "../src/heap/MinHeap";
+import MaxHeap from "../src/data-structure/heap/MaxHeap";
+import MinHeap from "../src/data-structure/heap/MinHeap";
 
 test('MaxHeap_insert', (t) => {
   let heap = new MaxHeap();

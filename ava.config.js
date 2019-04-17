@@ -1,6 +1,6 @@
 export default {
   files: [
-    'build/test/sort.test.js'
+    'build/test/trie.test.js'
   ],
   match: [
     '*'

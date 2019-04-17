@@ -1,5 +1,5 @@
 import test from 'ava';
-import DoublyLinkedList from "../src/linked-list/DoublyLinkedList";
+import DoublyLinkedList from "../src/data-structure/linked-list/DoublyLinkedList";
 
 test('doubly_addAll', (t) => {
   let ds = new DoublyLinkedList([1,2,3]);
